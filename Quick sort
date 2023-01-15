@@ -1,0 +1,90 @@
+Quick Sort is a Divide and Conquer algorithm. It picks an element as a pivot and partitions the given array around the picked pivot.
+Given an array arr[], its starting position is low (the index of the array) and its ending position is high(the index of the array).
+Note: The low and high are inclusive.
+Implement the partition() and quickSort() functions to sort the array.
+
+LINK :- https://practice.geeksforgeeks.org/problems/quick-sort/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=quick-sort
+
+class Solution
+{
+    // public:
+    // //Function to sort an array using quick sort algorithm.
+    // void swap(int x,int y){
+    //     int temp=x;
+    //     x=y;
+    //     y=temp;
+    // }
+    // void quickSort(int arr[], int low, int high)
+    // {
+    //     // code here
+    //     if(s>=e) return;
+    //     int p = partition(arr,s,e);
+    //     quickSort(arr,s,p-1);
+    //     quickSort(arr,p+1,r);
+    // }
+    
+    // public:
+    // int partition (int arr[], int low, int high)
+    // {
+    //   // Your code here
+    //   int pivot = arr[s];
+    //   int cnt=0;
+    //   for(int i=s+1;i<=e;i++){
+    //       if(arr[i]>pivot)
+    //       cnt++;
+    //   }
+    // }
+    // int pivotIndex=s+cnt;
+    // swap(arr[pivotIndex],arr[s]);
+    // int i=s,j=e;
+    // while(i<pivotIndex && j>pivotIndex){
+    //     while(arr[i]<pivot){
+    //         i++;
+    //     }
+    //     while(arr[j]>pivot){
+    //         j--;
+    //     }
+    //     if(i<pivotIndex && j>pivotIndex){
+    //         swap(arr[i],arr[j]);
+    //         i++;
+    //         j--;
+    //     }
+    // }
+    // return pivotIndex;
+    public:
+     void quickSort(int arr[], int low, int high)
+    {
+        if (low < high) {
+
+            int pivot = partition(arr, low, high) ;
+            quickSort(arr, low, pivot - 1)  ;
+            quickSort(arr, pivot + 1, high)  ;
+        }
+    }
+
+    public:
+    int partition (int arr[], int low, int high)
+    {
+        int pivot = arr[low]  ;
+        int i = low ;
+        int j = high ;
+
+        while (i < j) {
+
+            while (arr[i] <= pivot && i <= high - 1) {
+                i++  ;
+            }
+
+            while (arr[j] > pivot && j >= low) {
+                j-- ;
+            }
+
+            if (i < j)
+                swap(arr[i], arr[j])  ;
+        }
+
+        swap(arr[j], arr[low]) ;
+
+        return j ;
+    }
+};
